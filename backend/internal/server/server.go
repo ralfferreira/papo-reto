@@ -27,6 +27,9 @@ func NewServer(cfg *config.Config, db *repository.Database) *Server {
 	// Create router
 	router := gin.Default()
 
+	// Adicionar middleware CORS
+	router.Use(middleware.CORSMiddleware())
+
 	// Create JWT service
 	jwtService := auth.NewJWTService(cfg)
 
