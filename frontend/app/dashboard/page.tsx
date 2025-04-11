@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { groupsService } from "@/lib/api/groups"
-import { messagesService } from "@/lib/api/messages"
+// Removed the unused import: import { messagesService } from "@/lib/api/messages"
 import { authService } from "@/lib/api/auth"
 
 export default function DashboardPage() {

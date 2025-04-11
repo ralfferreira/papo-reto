@@ -32,6 +32,10 @@ export interface AuthResponse {
   createdAt?: string;
 }
 
+export interface NotificationSettings {
+  [key: string]: unknown;
+}
+
 /**
  * Serviço de autenticação
  */
@@ -82,7 +86,7 @@ export const authService = {
   /**
    * Atualizar configurações de notificação
    */
-  updateNotifications: async (settings: Record<string, any>) => {
+  updateNotifications: async (settings: NotificationSettings) => {
     return api.put<{ message: string }>('/user/notifications', settings);
   },
 

@@ -11,7 +11,7 @@ export interface MessageGroup {
   settings?: {
     icebreakers?: string[];
     bannedWords?: string[];
-    [key: string]: any;
+    [key: string]: unknown;
   };
   createdAt: string;
 }
@@ -23,7 +23,7 @@ export interface CreateGroupRequest {
   settings?: {
     icebreakers?: string[];
     bannedWords?: string[];
-    [key: string]: any;
+    [key: string]: unknown;
   };
 }
 

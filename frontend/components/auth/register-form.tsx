@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
+  // Removed unused FormDescription import
   FormField,
   FormItem,
   FormLabel,
@@ -70,7 +70,8 @@ export function RegisterForm() {
         // Redirecionar para a página de login após o registro bem-sucedido
         router.push("/login?registered=true")
       }
-    } catch (error) {
+    } catch (err) {
+      // Changed variable name from 'error' to 'err' to avoid shadowing
       setError("Ocorreu um erro ao registrar. Por favor, tente novamente.")
     } finally {
       setIsLoading(false)

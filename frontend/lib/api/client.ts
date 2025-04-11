@@ -16,7 +16,7 @@ export interface ApiResponse<T> {
 interface RequestOptions {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
   headers?: Record<string, string>;
-  body?: any;
+  body?: unknown;
   requiresAuth?: boolean;
 }
 
@@ -101,10 +101,10 @@ export const api = {
   get: <T>(endpoint: string, requiresAuth = true) =>
     apiRequest<T>(endpoint, { method: 'GET', requiresAuth }),
 
-  post: <T>(endpoint: string, body: any, requiresAuth = true) =>
+  post: <T>(endpoint: string, body: unknown, requiresAuth = true) =>
     apiRequest<T>(endpoint, { method: 'POST', body, requiresAuth }),
 
-  put: <T>(endpoint: string, body: any, requiresAuth = true) =>
+  put: <T>(endpoint: string, body: unknown, requiresAuth = true) =>
     apiRequest<T>(endpoint, { method: 'PUT', body, requiresAuth }),
 
   delete: <T>(endpoint: string, requiresAuth = true) =>
