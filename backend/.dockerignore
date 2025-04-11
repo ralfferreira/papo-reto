@@ -1,0 +1,41 @@
+# Arquivos e diretórios do Git
+.git
+.gitignore
+
+# Binários e arquivos temporários
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+tmp/
+
+# Dependências e módulos
+vendor/
+
+# Logs
+*.log
+
+# Arquivos específicos do ambiente de desenvolvimento
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Arquivos de configuração local que não devem ir para a imagem
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Arquivos Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Documentação
+README.md
+LICENSE
+docs/

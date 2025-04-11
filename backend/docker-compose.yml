@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: papo-reto-api
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      - SERVER_PORT=8080
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=papo_reto
+      - DB_SSL_MODE=disable
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=
+      - REDIS_DB=0
+      - JWT_SECRET=papo-reto-secret-key-change-in-production
+      - JWT_EXPIRY_MINUTES=60
+      - APP_ENV=development
+      - LOG_LEVEL=info
+    networks:
+      - papo-reto-network
+
+  postgres:
+    image: postgres
+    container_name: papo-reto-postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=papo_reto
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - papo-reto-network
+
+  redis:
+    image: redis
+    container_name: papo-reto-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - papo-reto-network
+
+networks:
+  papo-reto-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  redis-data:
