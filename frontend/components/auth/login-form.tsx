@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -32,7 +31,7 @@ const loginSchema = z.object({
 export function LoginForm() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [loginError, setLoginError] = useState<string | null>(null)  // Renamed from error to loginError
 
   // Inicializar o formulário com react-hook-form
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -46,7 +45,7 @@ export function LoginForm() {
   // Função para lidar com o envio do formulário
   async function onSubmit(values: z.infer<typeof loginSchema>) {
     setIsLoading(true)
-    setError(null)
+    setLoginError(null)
 
     try {
       const response = await authService.login({
@@ -55,13 +54,13 @@ export function LoginForm() {
       })
 
       if (response.error) {
-        setError(response.error)
+        setLoginError(response.error)
       } else {
         // Redirecionar para a página principal após o login bem-sucedido
         router.push("/dashboard")
       }
-    } catch (error) {
-      setError("Ocorreu um erro ao fazer login. Por favor, tente novamente.")
+    } catch {
+      setLoginError("Ocorreu um erro ao fazer login. Por favor, tente novamente.")
     } finally {
       setIsLoading(false)
     }
@@ -76,9 +75,9 @@ export function LoginForm() {
         </p>
       </div>
       
-      {error && (
+      {loginError && (
         <div className="bg-red-50 text-red-500 p-3 rounded-md text-sm">
-          {error}
+          {loginError}
         </div>
       )}
 

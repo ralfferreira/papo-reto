@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  // Removed unused FormDescription import
   FormField,
   FormItem,
   FormLabel,
@@ -39,7 +38,7 @@ const registerSchema = z.object({
 export function RegisterForm() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [registerError, setRegisterError] = useState<string | null>(null)  // Renamed from error to registerError
 
   // Inicializar o formulário com react-hook-form
   const form = useForm<z.infer<typeof registerSchema>>({
@@ -55,7 +54,7 @@ export function RegisterForm() {
   // Função para lidar com o envio do formulário
   async function onSubmit(values: z.infer<typeof registerSchema>) {
     setIsLoading(true)
-    setError(null)
+    setRegisterError(null)
 
     try {
       const response = await authService.register({
@@ -65,14 +64,13 @@ export function RegisterForm() {
       })
 
       if (response.error) {
-        setError(response.error)
+        setRegisterError(response.error)
       } else {
         // Redirecionar para a página de login após o registro bem-sucedido
         router.push("/login?registered=true")
       }
-    } catch (err) {
-      // Changed variable name from 'error' to 'err' to avoid shadowing
-      setError("Ocorreu um erro ao registrar. Por favor, tente novamente.")
+    } catch {
+      setRegisterError("Ocorreu um erro ao registrar. Por favor, tente novamente.")
     } finally {
       setIsLoading(false)
     }
@@ -87,9 +85,9 @@ export function RegisterForm() {
         </p>
       </div>
       
-      {error && (
+      {registerError && (
         <div className="bg-red-50 text-red-500 p-3 rounded-md text-sm">
-          {error}
+          {registerError}
         </div>
       )}
 
