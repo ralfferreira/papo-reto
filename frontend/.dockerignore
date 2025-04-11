@@ -1,0 +1,49 @@
+# Dependências
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Arquivos de build
+.next
+out
+
+# Arquivos de ambiente local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de IDE/editor
+.idea
+.vscode
+*.swp
+*.swo
+
+# Arquivos de teste
+coverage
+.nyc_output
+
+# Arquivos temporários
+.tmp
+.temp
+
+# Arquivos de log
+logs
+*.log
+
+# Arquivos de configuração específicos do ambiente local
+.env
+
+# Arquivos do Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Arquivos do Git
+.git
+.gitignore
